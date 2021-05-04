@@ -1,7 +1,9 @@
 const searchForm = document.querySelector('#search-form');
 searchForm.addEventListener('submit', handleSearchFormSubmit);
+
 const cityInputElement = document.querySelector('#city-input');
 cityInputElement.addEventListener('keypress', handleCityInputKeyPress);
+
 let body = document.querySelector('body');
 let titleAction = document.querySelector('.title-action')
 let weatherSection = document.querySelector('#weather')
