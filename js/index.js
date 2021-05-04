@@ -5,8 +5,9 @@ const cityInputElement = document.querySelector('#city-input');
 cityInputElement.addEventListener('keypress', handleCityInputKeyPress);
 
 let body = document.querySelector('body');
-let titleAction = document.querySelector('.title-action')
-let weatherSection = document.querySelector('#weather')
+let titleAction = document.querySelector('.title-action');
+let weatherSection = document.querySelector('#weather');
+let cityTitle = document.querySelector('.city-name');
 
  /* function classBackground(value) {
 
@@ -26,7 +27,7 @@ function handleSearchFormSubmit(event) {
     const cityInputElement = document.querySelector('#city-input');
     const city = cityInputElement.value;
     capitalize(city);
-
+    cityTitle.innerHTML = city
     const url = 'https://goweather.herokuapp.com/weather/' + city;
     const promise = axios.get(url);
     promise.then(handleWeatherResponse);
@@ -85,6 +86,18 @@ function handleReverseGeocoding(response) {
     const city = capitalize(responseCity);
     const cityInputElement = document.querySelector('#city-input');
     cityInputElement.value = city;
+
+    body.classList.remove('waiting-location')
+    body.classList.add('gradient-waiting-result');
+    titleAction.innerHTML = 'Waiting Input';
+
+    for (let a = 0; a < 3; a++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        dot.innerHTML = '.'
+        titleAction.appendChild(dot)
+    }
+
     handleSearchFormSubmit();
 }
 
@@ -99,3 +112,13 @@ function debounce(func, timeout){
         timer = setTimeout(() => { func.apply(this, args); }, timeout);
     };
 }
+
+
+/*
+    replace the for loop and the toggle claass (like in 88-96) with a function?
+    add animation to show app name and then say "Waiting input"
+    when using geolocation, automatically search
+    if access has been denied make a section appear saying that
+    fare invio fa partire la location?
+    Quando si preme search, si capitalizza anche quello!
+*/
