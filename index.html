@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Weathery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="../assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  </head>
+
+  <body class="gradient-waiting-result">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="./assets/logo.png" alt="" width="30" height="19.12" class="d-inline-block align-text-top" />
+          <span class="web-title">Weathery</span>
+        </a>
+        <form class="d-flex" style="margin-top: 0.3125rem; margin-bottom: 0.3125rem;">
+          <button id="search-location" class="btn btn-outline-info" type="submit"><i class="bi bi-globe"></i></button> <!--understnad how to put buttons-->
+          <input class="form-control me-2" type="text" id="city-input" placeholder="City" />
+          <button id="search-city" class="btn btn-outline-info" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <section id="waiting">
+      <div class="position-absolute top-50 start-50 translate-middle">
+        <h1 class="title-action">Waiting Input<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h1>
+      </div>
+    </section>
+
+    <section id="weather" style="display: none;">
+      <div class="container-rectangle position-absolute top-50 start-50 translate-middle">
+        <h1 class="city-name"></h1>
+        <div></div>
+      </div>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
