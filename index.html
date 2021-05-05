@@ -15,9 +15,9 @@
         <a class="navbar-brand" href="#">
           <img src="./assets/logo.png" alt="" width="30" height="19.12" class="d-inline-block align-text-top" />
           <span class="web-title">Weathery</span>
+          <button id="search-location" class="btn btn-outline-info" onclick="getCurrentPosition()"><i class="bi bi-globe"></i></button>
         </a>
         <form class="d-flex" id="search-form" style="margin-top: 0.3125rem; margin-bottom: 0.3125rem;">
-          <button id="search-location" class="btn btn-outline-info" onclick="getCurrentPosition()"><i class="bi bi-globe"></i></button> <!--understnad how to put buttons-->
           <input class="form-control me-2" type="text" id="city-input" placeholder="City" />
           <button id="search-city" class="btn btn-outline-info" type="submit">Search</button>
         </form>

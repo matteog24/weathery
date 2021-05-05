@@ -1,11 +1,12 @@
 const searchForm = document.querySelector('#search-form');
 searchForm.addEventListener('submit', handleSearchFormSubmit);
 
-const cityInputElement = document.querySelector('#city-input');
+let cityInputElement = document.querySelector('#city-input');
 cityInputElement.addEventListener('keypress', handleCityInputKeyPress);
 
 let body = document.querySelector('body');
 let titleAction = document.querySelector('.title-action');
+let waitingSection = document.querySelector('#waiting');
 let weatherSection = document.querySelector('#weather');
 let cityTitle = document.querySelector('.city-name');
 
@@ -18,23 +19,8 @@ let cityTitle = document.querySelector('.city-name');
     }
 } */
 
-function handleSearchFormSubmit(event) {
-    if (event != null) {
-        event.preventDefault();
-    }
-
-    weatherSection.getElementsByClassName.display = 'auto';
-    const cityInputElement = document.querySelector('#city-input');
-    const city = cityInputElement.value;
-    capitalize(city);
-    cityTitle.innerHTML = city
-    const url = 'https://goweather.herokuapp.com/weather/' + city;
-    const promise = axios.get(url);
-    promise.then(handleWeatherResponse);
-}
-
 function capitalize(city) {
-    const words = city.split(" ");
+    let words = city.split(" ");
 
     words[0] = words[0][0].toUpperCase() + (words[0].substring(1)).toLowerCase();
 
@@ -42,17 +28,10 @@ function capitalize(city) {
         for (let i = 1; i < words.length; i++) {
             words[i] = words[i][0].toUpperCase() + (words[i].substring(1)).toLowerCase();
         }
-        words.join(" ");
+        words = words.join(" ");
     }
 
     return words;
-}
-
-function handleWeatherResponse(response) {
-    const preElement = document.querySelector('#result');
-    const result = response.data;
-    const jsonData = JSON.stringify(result, null, 2);
-    preElement.innerHTML = jsonData;
 }
 
 function getCurrentPosition() {
@@ -105,6 +84,37 @@ function handleCityInputKeyPress() {
     debounce(handleSearchFormSubmit, 1000);
 }
 
+function handleSearchFormSubmit(event) {
+    if (event != null) {
+        event.preventDefault();
+    }
+
+    let city = cityInputElement.value;
+    cityInputElement.value = city = capitalize(city);
+    cityTitle.innerHTML = city;
+    // const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
+    // const url = 'https://goweather.herokuapp.com/weather/' + city;
+    titleAction.innerHTML = 'Getting Results';
+    for (let a = 0; a < 3; a++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        dot.innerHTML = '.'
+        titleAction.appendChild(dot)
+    }
+
+    const promise = axios.get(url);
+    body.classList.remove('gradient-waiting-result');
+    waitingSection.style.display = 'none';
+    weatherSection.style.display = 'block';
+    promise.then(handleWeatherResponse);
+}
+
+function handleWeatherResponse(response) {
+    const result = response.data;
+    const jsonData = JSON.stringify(result, null, 2);
+    // console.log(jsonData)
+}
+
 function debounce(func, timeout){
     let timer;
     return (...args) => {
@@ -116,9 +126,9 @@ function debounce(func, timeout){
 
 /*
     replace the for loop and the toggle claass (like in 88-96) with a function?
-    add animation to show app name and then say "Waiting input"
+    add animation to show app name and then say "Waiting input". Like Scroll animation.
     when using geolocation, automatically search
-    if access has been denied make a section appear saying that
-    fare invio fa partire la location?
+    if access has been denied make a section appear saying that.
     Quando si preme search, si capitalizza anche quello!
+    clicking the button for location multiple times gradeint
 */
