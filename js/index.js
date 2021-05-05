@@ -127,8 +127,6 @@ function debounce(func, timeout){
 /*
     replace the for loop and the toggle claass (like in 88-96) with a function?
     add animation to show app name and then say "Waiting input". Like Scroll animation.
-    when using geolocation, automatically search
-    if access has been denied make a section appear saying that.
-    Quando si preme search, si capitalizza anche quello!
+    if access has been denied make a section appear saying that, both server (403) and location.
     clicking the button for location multiple times gradeint
 */

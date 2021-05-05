@@ -1,3 +1,19 @@
+@font-face {
+    font-family: productSans;
+    src: url(../assets/font/regular.woff2);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: productSans;
+    src: url(../assets/font/bold.woff2);
+    font-weight: 600;
+}
+
+* {
+    font-family: productSans;
+}
+
 .navbar {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
