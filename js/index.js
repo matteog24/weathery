@@ -35,7 +35,8 @@ function capitalize(city) {
 }
 
 function getCurrentPosition() {
-    body.classList.toggle('waiting-location');
+    body.classList.remove('gradient-waiting-result');
+    body.classList.add('waiting-location')
     titleAction.innerHTML = 'Gathering Location';
 
     for (let a = 0; a < 3; a++) {
@@ -61,7 +62,9 @@ function handlePositionError() {
 }
 
 function handleReverseGeocoding(response) {
-    const responseCity = response.data.city;
+    // const responseCity = response.data.city;
+    const responseCity = response.data.adminareas.admin6.name_en; // THIS GETS THE ENGLISH NAME
+
     const city = capitalize(responseCity);
     const cityInputElement = document.querySelector('#city-input');
     cityInputElement.value = city;
@@ -92,7 +95,7 @@ function handleSearchFormSubmit(event) {
     let city = cityInputElement.value;
     cityInputElement.value = city = capitalize(city);
     cityTitle.innerHTML = city;
-    // const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
+    const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
     // const url = 'https://goweather.herokuapp.com/weather/' + city;
     titleAction.innerHTML = 'Getting Results';
     for (let a = 0; a < 3; a++) {
@@ -127,6 +130,6 @@ function debounce(func, timeout){
 /*
     replace the for loop and the toggle claass (like in 88-96) with a function?
     add animation to show app name and then say "Waiting input". Like Scroll animation.
-    if access has been denied make a section appear saying that, both server (403) and location.
-    clicking the button for location multiple times gradeint
+    if access has been denied make a section appear saying that, both server (403) and location. -> https://stackoverflow.com/questions/59491716/how-to-display-web-browser-console-in-a-webpage
+    clicking the button for geolocation multiple times changes gradeint
 */
