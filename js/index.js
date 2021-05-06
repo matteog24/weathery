@@ -84,7 +84,7 @@ function handleSearchFormSubmit(event) {
     let city = cityInputElement.value;
     cityInputElement.value = city = capitalize(city);
     cityTitle.innerHTML = city;
-    const url = 'https://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
+    const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
     // const url = 'https://goweather.herokuapp.com/weather/' + city;
     titleAction.innerHTML = 'Getting Results';
     changeTitle('Getting Results');
