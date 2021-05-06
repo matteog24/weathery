@@ -36,15 +36,8 @@ function capitalize(city) {
 
 function getCurrentPosition() {
     body.classList.remove('gradient-waiting-result');
-    body.classList.add('waiting-location')
-    titleAction.innerHTML = 'Gathering Location';
-
-    for (let a = 0; a < 3; a++) {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        dot.innerHTML = '.'
-        titleAction.appendChild(dot)
-    }
+    body.classList.add('waiting-location');
+    changeTitle('Gathering Location');
 
     navigator.geolocation.getCurrentPosition(handlePositionSuccess, handlePositionError);
 }
@@ -62,8 +55,11 @@ function handlePositionError() {
 }
 
 function handleReverseGeocoding(response) {
-    // const responseCity = response.data.city;
-    const responseCity = response.data.adminareas.admin6.name_en; // THIS GETS THE ENGLISH NAME
+
+    let responseCity = response.data.adminareas.admin6.name_en; // THIS GETS THE ENGLISH NAME
+    if (response.data.adminareas.admin6.name_en == undefined) { // IF NOT AVALIBLE, GET THE ORIGINAL ONE.
+        responseCity = response.data.city;
+    }
 
     const city = capitalize(responseCity);
     const cityInputElement = document.querySelector('#city-input');
@@ -71,14 +67,7 @@ function handleReverseGeocoding(response) {
 
     body.classList.remove('waiting-location')
     body.classList.add('gradient-waiting-result');
-    titleAction.innerHTML = 'Waiting Input';
-
-    for (let a = 0; a < 3; a++) {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        dot.innerHTML = '.'
-        titleAction.appendChild(dot)
-    }
+    changeTitle('Waiting Input');
 
     handleSearchFormSubmit();
 }
@@ -95,21 +84,26 @@ function handleSearchFormSubmit(event) {
     let city = cityInputElement.value;
     cityInputElement.value = city = capitalize(city);
     cityTitle.innerHTML = city;
-    const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
+    const url = 'https://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
     // const url = 'https://goweather.herokuapp.com/weather/' + city;
     titleAction.innerHTML = 'Getting Results';
-    for (let a = 0; a < 3; a++) {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        dot.innerHTML = '.'
-        titleAction.appendChild(dot)
-    }
+    changeTitle('Getting Results');
 
     const promise = axios.get(url);
     body.classList.remove('gradient-waiting-result');
     waitingSection.style.display = 'none';
     weatherSection.style.display = 'block';
     promise.then(handleWeatherResponse);
+}
+
+function changeTitle(text) {
+    titleAction.innerHTML = text;
+    for (let a = 0; a < 3; a++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        dot.innerHTML = '.'
+        titleAction.appendChild(dot)
+    }
 }
 
 function handleWeatherResponse(response) {
@@ -131,5 +125,4 @@ function debounce(func, timeout){
     replace the for loop and the toggle claass (like in 88-96) with a function?
     add animation to show app name and then say "Waiting input". Like Scroll animation.
     if access has been denied make a section appear saying that, both server (403) and location. -> https://stackoverflow.com/questions/59491716/how-to-display-web-browser-console-in-a-webpage
-    clicking the button for geolocation multiple times changes gradeint
 */
