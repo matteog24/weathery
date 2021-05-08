@@ -15,7 +15,7 @@
         <a class="navbar-brand" href="#">
           <img src="./assets/logo.png" alt="" width="30" height="19.12" class="d-inline-block align-text-top" />
           <span class="web-title">Weathery</span>
-          <button id="search-location" class="btn btn-outline-info" onclick="getCurrentPosition()"><i class="bi bi-globe"></i></button>
+          <button id="search-location" class="btn btn-outline-info" onclick="getCurrentPositionButton()"><i class="bi bi-globe"></i></button>
         </a>
         <form class="d-flex" id="search-form" style="margin-top: 0.3125rem; margin-bottom: 0.3125rem;">
           <input class="form-control me-2" type="text" id="city-input" placeholder="City" />
@@ -24,19 +24,38 @@
       </div>
     </nav>
 
-    <section id="waiting">
-      <div class="position-absolute top-50 start-50 translate-middle">
-        <h1 class="title-action">Waiting Input<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h1>
-      </div>
-    </section>
-
     <section id="weather" style="display: none;">
       <div class="container-rectangle position-absolute top-50 start-50 translate-middle">
         <h1 class="city-name"></h1>
         <div></div>
       </div>
     </section>
+
+    <section id="waiting">
+      <div class="position-absolute top-50 start-50 translate-middle">
+        <h1 class="title-action">Waiting Input<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h1>
+      </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- <script>
+      let navbar = document.querySelector('.navbar');
+      let containerRectangle = document.querySelector('.container-rectangle');
+      let w = window.innerWidth;
+      let h = window.innerHeight;
+
+      $(window).resize(function(){
+        w = window.innerWidth;
+        h = window.innerHeight;
+      });
     
+      $(navbar).hover(function(){
+        containerRectangle.style.marginTop = '30px';
+      });
+
+    </script> -->
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script src="./js/index.js"></script>

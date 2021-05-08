@@ -10,15 +10,6 @@ let waitingSection = document.querySelector('#waiting');
 let weatherSection = document.querySelector('#weather');
 let cityTitle = document.querySelector('.city-name');
 
- /* function classBackground(value) {
-
-    if (value == true) {
-        body.className = ""
-
-        get the weather info
-    }
-} */
-
 function capitalize(city) {
     let words = city.split(" ");
 
@@ -34,11 +25,10 @@ function capitalize(city) {
     return words;
 }
 
-function getCurrentPosition() {
+function getCurrentPositionButton() {
     body.classList.remove('gradient-waiting-result');
     body.classList.add('waiting-location');
     changeTitle('Gathering Location');
-
     navigator.geolocation.getCurrentPosition(handlePositionSuccess, handlePositionError);
 }
 
@@ -47,7 +37,7 @@ function handlePositionSuccess(position) {
     const lng = position.coords.longitude;
     const url = 'https://geocode.xyz/' + lat + ',' + lng + '?geoit=json';
     const promise = axios.get(url);
-    promise.then(handleReverseGeocoding);
+    promise.then(handleReverseGeocoding)
 }
 
 function handlePositionError() {
@@ -84,16 +74,13 @@ function handleSearchFormSubmit(event) {
     let city = cityInputElement.value;
     cityInputElement.value = city = capitalize(city);
     cityTitle.innerHTML = city;
-    const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
-    // const url = 'https://goweather.herokuapp.com/weather/' + city;
-    titleAction.innerHTML = 'Getting Results';
+    // const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
+    const url = 'https://goweather.herokuapp.com/weather/' + city;
     changeTitle('Getting Results');
 
     const promise = axios.get(url);
-    body.classList.remove('gradient-waiting-result');
-    waitingSection.style.display = 'none';
-    weatherSection.style.display = 'block';
     promise.then(handleWeatherResponse);
+
 }
 
 function changeTitle(text) {
@@ -107,8 +94,20 @@ function changeTitle(text) {
 }
 
 function handleWeatherResponse(response) {
+    body.className = '';
     const result = response.data;
-    const jsonData = JSON.stringify(result, null, 2);
+
+    if (result.temperature == undefined || result.temperature == '') {
+        body.classList.remove('waiting-location');
+        body.classList.add('error-location');
+        titleAction.innerHTML = 'City not found.'
+    }
+    else {
+        body.classList.remove('gradient-waiting-result');
+        waitingSection.style.display = 'none';
+        weatherSection.style.display = 'block';
+    }
+
     // console.log(jsonData)
 }
 
@@ -125,4 +124,6 @@ function debounce(func, timeout){
     replace the for loop and the toggle claass (like in 88-96) with a function?
     add animation to show app name and then say "Waiting input". Like Scroll animation.
     if access has been denied make a section appear saying that, both server (403) and location. -> https://stackoverflow.com/questions/59491716/how-to-display-web-browser-console-in-a-webpage
+    searching a city before another, doesn0t cancel gradient
+    does debounce work?
 */
