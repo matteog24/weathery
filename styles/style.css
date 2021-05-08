@@ -148,6 +148,21 @@ h1 {
     .web-title {
         display: none;
     }
+
+    .d-flex {
+        justify-content: flex-end;
+        margin-block-end: 0;
+        margin: 0;
+    }
+
+    .form-control {
+        width: 50%;
+        transition: width 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+        width: 90%;
+    }
 }
 
 @media only screen and (max-height: 500px) {

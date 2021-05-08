@@ -26,9 +26,7 @@ function capitalize(city) {
 }
 
 function getCurrentPositionButton() {
-    body.classList.remove('gradient-waiting-result');
-    body.classList.add('waiting-location');
-    changeTitle('Gathering Location');
+    changeTitle('Gathering Location', 'waiting-location');
     navigator.geolocation.getCurrentPosition(handlePositionSuccess, handlePositionError);
 }
 
@@ -55,9 +53,7 @@ function handleReverseGeocoding(response) {
     const cityInputElement = document.querySelector('#city-input');
     cityInputElement.value = city;
 
-    body.classList.remove('waiting-location')
-    body.classList.add('gradient-waiting-result');
-    changeTitle('Waiting Input');
+    changeTitle('Waiting Input', 'gradient-waiting-result');
 
     handleSearchFormSubmit();
 }
@@ -76,14 +72,14 @@ function handleSearchFormSubmit(event) {
     cityTitle.innerHTML = city;
     // const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
     const url = 'https://goweather.herokuapp.com/weather/' + city;
-    changeTitle('Getting Results');
+    changeTitle('Getting Results', 'gradient-waiting-result');
 
     const promise = axios.get(url);
     promise.then(handleWeatherResponse);
 
 }
 
-function changeTitle(text) {
+function changeTitle(text, classTitle) {
     titleAction.innerHTML = text;
     for (let a = 0; a < 3; a++) {
         const dot = document.createElement('span');
@@ -91,6 +87,10 @@ function changeTitle(text) {
         dot.innerHTML = '.'
         titleAction.appendChild(dot)
     }
+    
+    body.className = '';
+    body.className.add = classTitle;
+
 }
 
 function handleWeatherResponse(response) {
