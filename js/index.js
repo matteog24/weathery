@@ -9,7 +9,10 @@ let titleAction = document.querySelector('.title-action');
 let waitingSection = document.querySelector('#waiting');
 let weatherSection = document.querySelector('#weather');
 let cityTitle = document.querySelector('.city-name');
-let photoDiv = document.createElement('img')
+
+let imageNavbarContainer = document.querySelector('#image-navbar-container');
+let photoDiv = document.querySelector('.body-image');
+let credits = document.querySelector('.credits')
 
 function capitalize(city) {
     let words = city.split(" ");
@@ -74,6 +77,7 @@ function handleSearchFormSubmit(event) {
     // const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
     const url = 'https://goweather.herokuapp.com/weather/' + city;
     changeTitle('Getting Results', 'gradient-waiting-result');
+
     const promise = axios.get(url);
     promise.then(handleWeatherResponse);
 }
@@ -88,23 +92,33 @@ function handleWeatherResponse(response) {
         titleAction.innerHTML = 'City not found.'
     }
     else {
-        body.classList.remove('gradient-waiting-result');
-        waitingSection.style.display = 'none';
-        weatherSection.style.display = 'block';
         const urlPhoto = 'https://api.unsplash.com/photos/random?collections=1319040&client_id=Yxvg_YObZct-TssWBqiY8uDVdacG-sjPWftIeOEn_II'
         const promisePhoto = axios.get(urlPhoto);
         promisePhoto.then(handlePhotoResponse);
+        body.classList.remove('gradient-waiting-result');
+        waitingSection.style.display = 'none';
+        weatherSection.style.display = 'block';
     }
 
-    // console.log(jsonData)
 }
 
 function handlePhotoResponse(response) {
-    photoDiv.className = 'body-image';
+
     const result = response.data;
-    photoDiv.className = 'body-image';
+    const author = document.createElement('a');
+    author.innerHTML = result.user.name;
+    author.href = result.user.links.html;
+    author.target = '_blank';
+
+    const imageLink = document.createElement('a');
+    imageLink.innerHTML = 'Unsplash';
+    imageLink.href = result.links.html;
+    author.target = '_blank';
+
+    credits.appendChild(author, ' on ', imageLink);
     photoDiv.src = result.urls.regular;
-    body.appendChild(photoDiv);
+
+    imageNavbarContainer.style.display = 'block'
 }
 
 function changeTitle(text, classTitle) {
@@ -125,8 +139,9 @@ function changeTitle(text, classTitle) {
 }
 
 function checkPhoto() {
-    if (body.contains(photoDiv)) {
-        body.removeChild(photoDiv)
+    if (photoDiv.src !== undefined) {
+        credits.innerHTML = '';
+        imageNavbarContainer.style.display = 'none'
     }
 }
 
@@ -140,8 +155,11 @@ function debounce(func, timeout){
 
 /*
     add animation to show app name and then say "Waiting input". Like Scroll animation.
-    if access has been denied make a section appear saying that, both server (403) and location. -> https://stackoverflow.com/questions/59491716/how-to-display-web-browser-console-in-a-webpage
+    if access has been denied make a section appear saying that, both server (403) and location. Maybe add a timer of 10 seconds if there are no results then display error message ('City not found') ->
+    -> Add a small paragraph at the bottom saying 'Tip: Are you having problems with the connection? Or we couldn't find your location'.
     gradients aren't working
     does debounce work?
     add series of if statement to get different collections based on the weather.
+    118 doesn't work (append)
+    maybe add string concatenation when saying + 'something'
 */

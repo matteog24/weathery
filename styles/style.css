@@ -16,18 +16,30 @@
 
 .body-image {
     width: 100%;
-    height: 100%;
+    height: calc(100% + 2.5rem);
     object-fit: cover;
-    animation: cross-dissolve 0.3 ease-in-out;
 }
 
 h1 {
     font-weight: 600;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
 .navbar {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
+}
+
+.navbar-bottom {
+    border-top-left-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
 }
 
 .city-name {
@@ -77,6 +89,14 @@ h1 {
     animation: gradient 15s ease infinite;
 }
 
+.github-link, .credits {
+    color: black
+}
+
+.github-link {
+    margin-left: auto;
+}
+
 @keyframes blink {
     0% {
       opacity: .2;
@@ -86,18 +106,6 @@ h1 {
     }
     100% {
       opacity: .2;
-    }
-}
-
-@keyframes cross-dissolve {
-    0% {
-        opacity: 0;
-    }
-    60% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 1;
     }
 }
 

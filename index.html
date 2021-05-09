@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico" />
     <link rel="apple-touch-icon" href="../assets/favicon.ico" />
+    <meta name="description" content="Weathery is an open-source website that provides a weather forecast for cities, which can be found via geopositioning or manual input.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
   </head>
@@ -36,6 +37,14 @@
         <h1 class="title-action">Waiting Input<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h1>
       </div>
     </section>
+
+    <div id="image-navbar-container" style="display: none;">
+      <img src="" alt="" class="body-image">
+      <div id="navbar-bottom" class="fixed-bottom navbar-bottom">
+        <p class="credits"></p>
+        <a href="https://github.com/matteog24/weathery" class="github-link"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
