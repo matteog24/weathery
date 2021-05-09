@@ -9,6 +9,7 @@ let titleAction = document.querySelector('.title-action');
 let waitingSection = document.querySelector('#waiting');
 let weatherSection = document.querySelector('#weather');
 let cityTitle = document.querySelector('.city-name');
+let photoDiv = document.createElement('img')
 
 function capitalize(city) {
     let words = city.split(" ");
@@ -26,9 +27,10 @@ function capitalize(city) {
 }
 
 function getCurrentPositionButton() {
+    checkPhoto();
     changeTitle('Gathering Location', 'waiting-location');
     weatherSection.style.display = 'none' // In case the Weather Section was displayed
-    navigator.geolocation.getCurrentPosition(handlePositionSuccess, handlePositionError, {enableHighAccuracy: true, maximumAge: 10000});
+    navigator.geolocation.getCurrentPosition(handlePositionSuccess, handlePositionError, {enableHighAccuracy: true, maximumAge: 10000}); // Is this helpful? lol
 }
 
 function handlePositionSuccess(position) {
@@ -65,15 +67,44 @@ function handleSearchFormSubmit(event) {
         event.preventDefault();
     }
 
+    checkPhoto()
     let city = cityInputElement.value;
     cityInputElement.value = city = capitalize(city);
     cityTitle.innerHTML = city;
     // const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
     const url = 'https://goweather.herokuapp.com/weather/' + city;
     changeTitle('Getting Results', 'gradient-waiting-result');
-
     const promise = axios.get(url);
     promise.then(handleWeatherResponse);
+}
+
+function handleWeatherResponse(response) {
+    body.className = '';
+    const result = response.data;
+
+    if (result.temperature == undefined || result.temperature == '') {
+        body.classList.remove('waiting-location');
+        body.classList.add('error-location');
+        titleAction.innerHTML = 'City not found.'
+    }
+    else {
+        body.classList.remove('gradient-waiting-result');
+        waitingSection.style.display = 'none';
+        weatherSection.style.display = 'block';
+        const urlPhoto = 'https://api.unsplash.com/photos/random?collections=1319040&client_id=Yxvg_YObZct-TssWBqiY8uDVdacG-sjPWftIeOEn_II'
+        const promisePhoto = axios.get(urlPhoto);
+        promisePhoto.then(handlePhotoResponse);
+    }
+
+    // console.log(jsonData)
+}
+
+function handlePhotoResponse(response) {
+    photoDiv.className = 'body-image';
+    const result = response.data;
+    photoDiv.className = 'body-image';
+    photoDiv.src = result.urls.full;
+    body.appendChild(photoDiv);
 }
 
 function changeTitle(text, classTitle) {
@@ -90,26 +121,14 @@ function changeTitle(text, classTitle) {
     
     body.className = '';
     body.classList.add = classTitle; // Removes all classes to add the preferred one.
-    debugger
 
 }
 
-function handleWeatherResponse(response) {
-    body.className = '';
-    const result = response.data;
-
-    if (result.temperature == undefined || result.temperature == '') {
-        body.classList.remove('waiting-location');
-        body.classList.add('error-location');
-        titleAction.innerHTML = 'City not found.'
+function checkPhoto() {
+    if (body.contains(photoDiv)) {
+        body.removeChild(photoDiv)
     }
-    else {
-        body.classList.remove('gradient-waiting-result');
-        waitingSection.style.display = 'none';
-        weatherSection.style.display = 'block';
-    }
-
-    // console.log(jsonData)
+    console.log('lol')
 }
 
 function debounce(func, timeout){
