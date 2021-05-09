@@ -27,15 +27,17 @@ function capitalize(city) {
 
 function getCurrentPositionButton() {
     changeTitle('Gathering Location', 'waiting-location');
-    navigator.geolocation.getCurrentPosition(handlePositionSuccess, handlePositionError);
+    weatherSection.style.display = 'none' // In case the Weather Section was displayed
+    navigator.geolocation.getCurrentPosition(handlePositionSuccess, handlePositionError, {enableHighAccuracy: true, maximumAge: 10000});
 }
 
 function handlePositionSuccess(position) {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
-    const url = 'https://geocode.xyz/' + lat + ',' + lng + '?geoit=json';
+    const url = 'https://api.geoapify.com/v1/geocode/reverse?lat='+ lat + '&lon=' + lng + '&apiKey=fbe68b431f0f422b8cf3183035c22132'
+    // const url = 'https://geocode.xyz/' + lat + ',' + lng + '?geoit=json';
     const promise = axios.get(url);
-    promise.then(handleReverseGeocoding)
+    promise.then(handleReverseGeocoding);
 }
 
 function handlePositionError() {
@@ -43,11 +45,7 @@ function handlePositionError() {
 }
 
 function handleReverseGeocoding(response) {
-
-    let responseCity = response.data.adminareas.admin6.name_en; // THIS GETS THE ENGLISH NAME
-    if (response.data.adminareas.admin6.name_en == undefined) { // IF NOT AVALIBLE, GET THE ORIGINAL ONE.
-        responseCity = response.data.city;
-    }
+    let responseCity = response.data.features[0].properties.city;
 
     const city = capitalize(responseCity);
     const cityInputElement = document.querySelector('#city-input');
@@ -76,10 +74,12 @@ function handleSearchFormSubmit(event) {
 
     const promise = axios.get(url);
     promise.then(handleWeatherResponse);
-
 }
 
 function changeTitle(text, classTitle) {
+    weatherSection.style.display = 'none' // In case the Weather Section was displayed
+    waitingSection.style.display = 'block' // Block = Default. Makes sure it appears.
+
     titleAction.innerHTML = text;
     for (let a = 0; a < 3; a++) {
         const dot = document.createElement('span');
@@ -89,7 +89,8 @@ function changeTitle(text, classTitle) {
     }
     
     body.className = '';
-    body.className.add = classTitle;
+    body.classList.add = classTitle; // Removes all classes to add the preferred one.
+    debugger
 
 }
 
@@ -119,9 +120,7 @@ function debounce(func, timeout){
     };
 }
 
-
 /*
-    replace the for loop and the toggle claass (like in 88-96) with a function?
     add animation to show app name and then say "Waiting input". Like Scroll animation.
     if access has been denied make a section appear saying that, both server (403) and location. -> https://stackoverflow.com/questions/59491716/how-to-display-web-browser-console-in-a-webpage
     searching a city before another, doesn0t cancel gradient
