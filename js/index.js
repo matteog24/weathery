@@ -103,7 +103,7 @@ function handlePhotoResponse(response) {
     photoDiv.className = 'body-image';
     const result = response.data;
     photoDiv.className = 'body-image';
-    photoDiv.src = result.urls.full;
+    photoDiv.src = result.urls.regular;
     body.appendChild(photoDiv);
 }
 
@@ -128,7 +128,6 @@ function checkPhoto() {
     if (body.contains(photoDiv)) {
         body.removeChild(photoDiv)
     }
-    console.log('lol')
 }
 
 function debounce(func, timeout){
@@ -142,6 +141,7 @@ function debounce(func, timeout){
 /*
     add animation to show app name and then say "Waiting input". Like Scroll animation.
     if access has been denied make a section appear saying that, both server (403) and location. -> https://stackoverflow.com/questions/59491716/how-to-display-web-browser-console-in-a-webpage
-    searching a city before another, doesn0t cancel gradient
+    gradients aren't working
     does debounce work?
+    add series of if statement to get different collections based on the weather.
 */
