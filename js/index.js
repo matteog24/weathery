@@ -9,6 +9,7 @@ let titleAction = document.querySelector('.title-action');
 let waitingSection = document.querySelector('#waiting');
 let weatherSection = document.querySelector('#weather');
 let cityTitle = document.querySelector('.city-name');
+let weatherConditionTitle = document.querySelector('.weather-condition')
 
 let imageNavbarContainer = document.querySelector('#image-navbar-container');
 let photoDiv = document.querySelector('.body-image');
@@ -100,7 +101,8 @@ function handleWeatherSuccess(response) {
 
     const currentTemperature = result.current.temp_c;
     const currentCondition = result.current.condition.text;
-    let categoryId = 1319040;
+    weatherConditionTitle.innerHTML = currentCondition + ' - ' + currentTemperature + 'ºC';
+    let categoryId;
 
     if (currentCondition == 'Sunny' || currentCondition == 'Clear') { // Because https://www.weatherapi.com/docs/weather_conditions.json
         categoryId = 3302943;
