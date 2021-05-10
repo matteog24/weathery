@@ -74,8 +74,9 @@ function handleSearchFormSubmit(event) {
     let city = cityInputElement.value;
     cityInputElement.value = city = capitalize(city);
     cityTitle.innerHTML = city;
+    const url = 'https://api.weatherapi.com/v1/forecast.json?key=2d94c8429371436ebe960637211005&q=' + city + '&days=3&aqi=no&alerts=yes'
     // const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
-    const url = 'https://goweather.herokuapp.com/weather/' + city;
+    // const url = 'https://goweather.herokuapp.com/weather/' + city;
     changeTitle('Getting Results', 'gradient-waiting-result');
 
     const promise = axios.get(url);
@@ -85,6 +86,53 @@ function handleSearchFormSubmit(event) {
 function handleWeatherResponse(response) {
     body.className = '';
     const result = response.data;
+
+    const currentTemperature = result.current.temp_c;
+    const currentCondition = result.current.condition.text;
+
+    if (currentCondition == 'Sunny' || currentCondition == 'Clear') { // Because https://www.weatherapi.com/docs/weather_conditions.json
+
+    }
+    else if (currentCondition == 'Partly cloudy' || currentCondition == 'Cloudy' || currentCondition == 'Overcast') {
+
+    }
+    else if (currentCondition == 'Mist') {
+        
+    }
+    else if (currentCondition == 'Patchy rain possible') {
+        
+    }
+    else if (currentCondition == 'Patchy snow possible') {
+        
+    }
+    else if (currentCondition == 'Patchy sleet possible') {
+        
+    }
+    else if (currentCondition == 'Patchy freezing drizzle possible') {
+        
+    }
+    else if (currentCondition == 'Blowing snow') {
+        
+    }
+    else if (currentCondition == 'Blizzard') {
+        
+    }
+    else if (currentCondition == 'Fog' || currentCondition == 'Freezing fog') {
+        
+    }
+    else if (currentCondition == 'Freezing drizzle' || currentCondition == 'Heavy freezing drizzle') {
+        
+    }
+    else if (currentCondition == 'Patchy light drizzle' || currentCondition == 'Light drizzle' || currentCondition == 'Patchy light rain' || currentCondition == 'Light rain' || currentCondition == 'Moderate rain at times' || currentCondition == 'Moderate rain' || currentCondition == 'Heavy rain at times' || currentCondition == 'Heavy rain' || currentCondition == 'Light freezing rain' || currentCondition == 'Moderate or heavy freezing rain' || currentCondition == 'Light rain shower' || currentCondition == 'Moderate or heavy rain shower' || currentCondition == 'Torrential rain shower' || currentCondition == 'Light sleet showers' || currentCondition == 'Moderate or heavy sleet showers') {
+        
+    }
+    else if (currentCondition == 'Light sleet' || currentCondition == 'Moderate or heavy sleet' || currentCondition == 'Patchy light snow' || currentCondition == 'Light snow' || currentCondition == 'Patchy moderate snow' || currentCondition == 'Moderate snow' || currentCondition == 'Patchy heavy snow' || currentCondition == 'Heavy snow' || currentCondition == 'Ice pellets' || currentCondition == 'Light snow showers' || currentCondition == 'Moderate or heavy snow showers' || currentCondition == 'Light showers of ice pellets' || currentCondition == 'Moderate or heavy showers of ice pellets') {
+        
+    }
+    else if (currentCondition == 'Patchy light rain with thunder' || currentCondition == 'Moderate or heavy rain with thunder' || currentCondition == 'Patchy light snow with thunder' || currentCondition == 'Moderate or heavy snow with thunder' || currentCondition == 'Thundery outbreaks possible') {
+        
+    }
+
 
     if (result.temperature == undefined || result.temperature == '') {
         body.classList.remove('waiting-location');
@@ -113,9 +161,9 @@ function handlePhotoResponse(response) {
     const imageLink = document.createElement('a');
     imageLink.innerHTML = 'Unsplash';
     imageLink.href = result.links.html;
-    author.target = '_blank';
+    imageLink.target = '_blank';
 
-    credits.appendChild(author, ' on ', imageLink);
+    credits.append(author, ' on ', imageLink);
     photoDiv.src = result.urls.regular;
 
     imageNavbarContainer.style.display = 'block'

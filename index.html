@@ -16,14 +16,22 @@
         <a class="navbar-brand" href="#">
           <img src="./assets/logo.png" alt="" width="30" height="19.12" class="d-inline-block align-text-top" />
           <span class="web-title">Weathery</span>
-          <button id="search-location" class="btn btn-outline-info" onclick="getCurrentPositionButton()"><i class="bi bi-globe"></i></button>
+          <button aria-label="Find current location" id="search-location" class="btn btn-outline-info" onclick="getCurrentPositionButton()"><i class="bi bi-globe"></i></button>
         </a>
-        <form class="d-flex" id="search-form" style="margin-top: 0.3125rem; margin-bottom: 0.3125rem;">
+        <form class="d-flex d-flex-form" id="search-form" style="margin-top: 0.3125rem; margin-bottom: 0.3125rem;">
           <input class="form-control me-2" type="text" id="city-input" placeholder="City" />
           <button id="search-city" class="btn btn-outline-info" type="submit">Search</button>
         </form>
       </div>
     </nav>
+
+    <div id="image-navbar-container" style="display: none;">
+      <img src="" alt="" class="body-image">
+      <div id="navbar-bottom" class="d-flex align-items-center navbar-bottom bottom-0 end-0">
+        <p class="credits"></p>
+        <a href="https://github.com/matteog24/weathery" target="_blank" class="github-link"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
 
     <section id="weather" style="display: none;">
       <div class="container-rectangle position-absolute top-50 start-50 translate-middle">
@@ -37,14 +45,6 @@
         <h1 class="title-action">Waiting Input<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h1>
       </div>
     </section>
-
-    <div id="image-navbar-container" style="display: none;">
-      <img src="" alt="" class="body-image">
-      <div id="navbar-bottom" class="fixed-bottom navbar-bottom">
-        <p class="credits"></p>
-        <a href="https://github.com/matteog24/weathery" class="github-link"><i class="bi bi-github"></i></a>
-      </div>
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
