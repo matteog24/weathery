@@ -9,7 +9,17 @@ let titleAction = document.querySelector('.title-action');
 let waitingSection = document.querySelector('#waiting');
 let weatherSection = document.querySelector('#weather');
 let cityTitle = document.querySelector('.city-name');
-let weatherConditionTitle = document.querySelector('.weather-condition')
+let weatherConditionTitle = document.querySelector('.weather-condition');
+let container = document.querySelector('.container-rectangle')
+// let svgSun = document.querySelector('#sun');
+// let svgCloud = document.querySelector('#cloud');
+// let svgFog = document.querySelector('#fog');
+// let svgDrizzle = document.querySelector('#drizzle');
+// let svgRain = document.querySelector('#rain');
+// let svgSnow = document.querySelector('#snow');
+// let svgThunder = document.querySelector('#thunder');
+let svg = document.createElement('img');
+svg.className = 'svg';
 
 let imageNavbarContainer = document.querySelector('#image-navbar-container');
 let photoDiv = document.querySelector('.body-image');
@@ -96,6 +106,10 @@ function handleWeatherSuccess(response) {
     body.className = '';
     const result = response.data;
 
+    if (container.contains(svg)) {
+        container.removeChild(svg)
+    }
+    
     cityInputElement.value = '';
     cityTitle.innerHTML = result.location.name;
 
@@ -106,40 +120,38 @@ function handleWeatherSuccess(response) {
 
     if (currentCondition == 'Sunny' || currentCondition == 'Clear') { // Because https://www.weatherapi.com/docs/weather_conditions.json
         categoryId = 3302943;
-        console.log("sunny")
-        console.log(result)
+        console.log("sunny");
+        svg.src = '../assets/svg/sun.svg'
+        svg.style.display = 'block';
     }
     else if (currentCondition == 'Partly cloudy' || currentCondition == 'Cloudy' || currentCondition == 'Overcast') {
         categoryId = 534083;
-        console.log("cloudy")
-        console.log(result)
+        console.log("cloudy");
+        svg.src = '../assets/svg/cloud.svg'
+        svg.style.display = 'block';
     }
     else if (currentCondition == 'Mist' || currentCondition == 'Fog' || currentCondition == 'Freezing fog') {
         categoryId = 1683388;
-        console.log("foggy")
-        console.log(result)
+        console.log("foggy");
     }
     else if (currentCondition == 'Freezing drizzle' || currentCondition == 'Heavy freezing drizzle') {
         categoryId = 8566192;
-        console.log("drizzle")
-        console.log(result)
+        console.log("drizzle");
     }
     else if (currentCondition == 'Patchy freezing drizzle possible' || currentCondition == 'Patchy light drizzle' || currentCondition == 'Light drizzle' || currentCondition == 'Patchy rain possible' || currentCondition == 'Patchy light rain' || currentCondition == 'Light rain' || currentCondition == 'Moderate rain at times' || currentCondition == 'Moderate rain' || currentCondition == 'Heavy rain at times' || currentCondition == 'Heavy rain' || currentCondition == 'Light freezing rain' || currentCondition == 'Moderate or heavy freezing rain' || currentCondition == 'Light rain shower' || currentCondition == 'Moderate or heavy rain shower' || currentCondition == 'Torrential rain shower' || currentCondition == 'Light sleet showers' || currentCondition == 'Moderate or heavy sleet showers') {
         categoryId = 97141906;
-        console.log("rainy")
-        console.log(result)
+        console.log("rainy");
     }
     else if ( currentCondition == 'Patchy sleet possible' || currentCondition == 'Light sleet' || currentCondition == 'Moderate or heavy sleet' || currentCondition == 'Patchy snow possible' || currentCondition == 'Patchy light snow' || currentCondition == 'Light snow' || currentCondition == 'Patchy moderate snow' || currentCondition == 'Moderate snow' || currentCondition == 'Patchy heavy snow' || currentCondition == 'Heavy snow' || currentCondition == 'Blowing snow' || currentCondition == 'Blizzard' || currentCondition == 'Ice pellets' || currentCondition == 'Light snow showers' || currentCondition == 'Moderate or heavy snow showers' || currentCondition == 'Light showers of ice pellets' || currentCondition == 'Moderate or heavy showers of ice pellets') {
         categoryId = 574181;
-        console.log("snowy")
-        console.log(result)
+        console.log("snowy");
     }
     else if (currentCondition == 'Patchy light rain with thunder' || currentCondition == 'Moderate or heavy rain with thunder' || currentCondition == 'Patchy light snow with thunder' || currentCondition == 'Moderate or heavy snow with thunder' || currentCondition == 'Thundery outbreaks possible') {
         categoryId = 3578001;
-        console.log("thundery")
-        console.log(result)
+        console.log("thundery");
     }
 
+    container.appendChild(svg);
     const urlPhoto = 'https://api.unsplash.com/photos/random?collections=' + categoryId + '&client_id=Yxvg_YObZct-TssWBqiY8uDVdacG-sjPWftIeOEn_II'
     const promisePhoto = axios.get(urlPhoto);
     promisePhoto.then(handlePhotoResponse);
@@ -169,15 +181,15 @@ function handlePhotoResponse(response) {
 }
 
 function changeTitle(text, classTitle) {
-    weatherSection.style.display = 'none' // In case the Weather Section was displayed
-    waitingSection.style.display = 'block' // Block = Default. Makes sure it appears.
+    weatherSection.style.display = 'none'; // In case the Weather Section was displayed
+    waitingSection.style.display = 'block'; // Block = Default. Makes sure it appears.
 
     titleAction.innerHTML = text;
     for (let a = 0; a < 3; a++) {
         const dot = document.createElement('span');
         dot.classList.add('dot');
-        dot.innerHTML = '.'
-        titleAction.appendChild(dot)
+        dot.innerHTML = '.';
+        titleAction.appendChild(dot);
     }
     
     body.className = classTitle; // Removes all classes to add the preferred one.
@@ -201,9 +213,7 @@ function debounce(func, timeout){
 
 /*
     add animation to show app name and then say "Waiting input". Like Scroll animation.
-    if access has been denied make a section appear saying that, both server (403) and location. Maybe add a timer of 10 seconds if there are no results then display error message ('City not found') ->
-    -> Add a small paragraph at the bottom saying 'Tip: Are you having problems with the connection? Or we couldn't find your location'.
-    gradients aren't working
     does debounce work?
     maybe add string concatenation when saying + 'something'
+    svg is still there after searching another place.
 */
