@@ -109,7 +109,7 @@ function handleWeatherSuccess(response) {
     if (container.contains(svg)) {
         container.removeChild(svg)
     }
-    
+
     cityInputElement.value = '';
     cityTitle.innerHTML = result.location.name;
 
@@ -121,13 +121,13 @@ function handleWeatherSuccess(response) {
     if (currentCondition == 'Sunny' || currentCondition == 'Clear') { // Because https://www.weatherapi.com/docs/weather_conditions.json
         categoryId = 3302943;
         console.log("sunny");
-        svg.src = '../assets/svg/sun.svg'
+        svg.src = './assets/svg/sun.svg'
         svg.style.display = 'block';
     }
     else if (currentCondition == 'Partly cloudy' || currentCondition == 'Cloudy' || currentCondition == 'Overcast') {
         categoryId = 534083;
         console.log("cloudy");
-        svg.src = '../assets/svg/cloud.svg'
+        svg.src = './assets/svg/cloud.svg'
         svg.style.display = 'block';
     }
     else if (currentCondition == 'Mist' || currentCondition == 'Fog' || currentCondition == 'Freezing fog') {
@@ -216,4 +216,5 @@ function debounce(func, timeout){
     does debounce work?
     maybe add string concatenation when saying + 'something'
     svg is still there after searching another place.
+    add alt to img
 */
