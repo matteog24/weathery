@@ -10,14 +10,7 @@ let waitingSection = document.querySelector('#waiting');
 let weatherSection = document.querySelector('#weather');
 let cityTitle = document.querySelector('.city-name');
 let weatherConditionTitle = document.querySelector('.weather-condition');
-let container = document.querySelector('.container-rectangle')
-// let svgSun = document.querySelector('#sun');
-// let svgCloud = document.querySelector('#cloud');
-// let svgFog = document.querySelector('#fog');
-// let svgDrizzle = document.querySelector('#drizzle');
-// let svgRain = document.querySelector('#rain');
-// let svgSnow = document.querySelector('#snow');
-// let svgThunder = document.querySelector('#thunder');
+let weatherAtAGlance = document.querySelector('.weather-at-a-glance');
 let svg = document.createElement('img');
 svg.className = 'svg';
 
@@ -106,8 +99,8 @@ function handleWeatherSuccess(response) {
     body.className = '';
     const result = response.data;
 
-    if (container.contains(svg)) {
-        container.removeChild(svg)
+    if (weatherAtAGlance.contains(svg)) {
+        weatherAtAGlance.removeChild(svg)
     }
 
     cityInputElement.value = '';
@@ -121,13 +114,13 @@ function handleWeatherSuccess(response) {
     if (currentCondition == 'Sunny' || currentCondition == 'Clear') { // Because https://www.weatherapi.com/docs/weather_conditions.json
         categoryId = 3302943;
         console.log("sunny");
-        svg.src = './assets/svg/sun.svg'
+        svg.src = './assets/svg/sun.svg';
         svg.style.display = 'block';
     }
     else if (currentCondition == 'Partly cloudy' || currentCondition == 'Cloudy' || currentCondition == 'Overcast') {
         categoryId = 534083;
         console.log("cloudy");
-        svg.src = './assets/svg/cloud.svg'
+        svg.src = './assets/svg/cloud.svg';
         svg.style.display = 'block';
     }
     else if (currentCondition == 'Mist' || currentCondition == 'Fog' || currentCondition == 'Freezing fog') {
@@ -151,7 +144,7 @@ function handleWeatherSuccess(response) {
         console.log("thundery");
     }
 
-    container.appendChild(svg);
+    weatherAtAGlance.appendChild(svg);
     const urlPhoto = 'https://api.unsplash.com/photos/random?collections=' + categoryId + '&client_id=Yxvg_YObZct-TssWBqiY8uDVdacG-sjPWftIeOEn_II'
     const promisePhoto = axios.get(urlPhoto);
     promisePhoto.then(handlePhotoResponse);
@@ -177,7 +170,25 @@ function handlePhotoResponse(response) {
     credits.append(author, ' on ', imageLink);
     photoDiv.src = result.urls.regular;
 
-    imageNavbarContainer.style.display = 'block'
+    imageNavbarContainer.style.display = 'block';
+}
+
+function setInfo(divId, value, name, svgscr) {
+    let div = document.getElementById(divId); // if doesn't work put query selector
+    
+    let condition = document.createElement('h3')
+    condition.className = 'Qualcosa lol';
+    condition.innerHTML = name;
+
+    let animation = document.createElement('img'); // da sostiutire con video!
+    animation.src = svgscr;
+    animation.className = 'Qualcosa';
+
+    let valueCondition = document.createElement('h3');
+    valueCondition.className = 'Em';
+    valueCondition.innerHTML = value;
+
+    divId.attach(condition, animation, valueCondition)
 }
 
 function changeTitle(text, classTitle) {
@@ -217,4 +228,7 @@ function debounce(func, timeout){
     maybe add string concatenation when saying + 'something'
     svg is still there after searching another place.
     add alt to img
+    column gap doesn't work on safari. wtf?? 
+    when got the results, delete the content of the waiting sections
+    putting a space after the city name (search) causes the program to break
 */

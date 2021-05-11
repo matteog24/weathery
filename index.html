@@ -37,15 +37,23 @@
 
     <section id="weather" style="display: none;">
       <div class="container-rectangle position-absolute top-50 start-50 translate-middle">
-        <div>
+        <div class="weather-at-a-glance">
           <h3 class="city-name"></h3>
           <h1 class="weather-condition"></h1>
+        </div>
+        <div class="d-flex" style="justify-content: left;">
+          <div class="info" id='wind-km/h'></div>
+          <div class="info" id='humidity'></div>
+          <div class="info" id='chance-of-rain-snow'></div>
+          <div class="info" id='sunrise'></div>
+          <div class="info" id='sunset'></div>
+          <div class="info" id='uv-index'></div>
         </div>
       </div>
     </section>
 
     <section id="waiting">
-      <div class="position-absolute top-50 start-50 translate-middle">
+      <div class="position-absolute top-50 start-50 translate-middle d-flex">
         <h1 class="title-action">Waiting Input<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h1>
       </div>
     </section>

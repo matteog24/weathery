@@ -44,13 +44,21 @@ p {
 .navbar-bottom {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    column-gap: 20px;
     background-color: white;
-    display: flex;
     position: absolute;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     padding: 10px;
+}
+
+.info {
+    width: 8rem;
+    height: 10rem;
+    border-radius: 20px;
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    backdrop-filter: blur(0.2px);
 }
 
 .city-name {
@@ -67,6 +75,11 @@ p {
     width: 10rem;
     height: 10rem;
     display: none;
+    transition: 0.3s transform ease-in-out;
+}
+
+.svg:hover {
+    transform: scale(1.2);
 }
 
 .btn-outline-info {
@@ -164,6 +177,11 @@ p {
     backdrop-filter: blur(0.5px);
 }
 
+.weather-at-a-glance {
+    justify-content: space-between;
+    display: flex;
+}
+
 @keyframes animation{
     from {
         opacity: 0;
@@ -199,6 +217,11 @@ p {
 
     .web-title {
         display: none;
+    }
+
+    .container-rectangle {
+        justify-content: unset;
+        display: block;
     }
 
     .d-flex-form {
