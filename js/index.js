@@ -1,22 +1,22 @@
 const searchForm = document.querySelector('#search-form');
 searchForm.addEventListener('submit', handleSearchFormSubmit);
 
-let cityInputElement = document.querySelector('#city-input');
+const cityInputElement = document.querySelector('#city-input');
 cityInputElement.addEventListener('keypress', handleCityInputKeyPress);
 
-let body = document.querySelector('body');
-let titleAction = document.querySelector('.title-action');
-let waitingSection = document.querySelector('#waiting');
-let weatherSection = document.querySelector('#weather');
-let cityTitle = document.querySelector('.city-name');
-let weatherConditionTitle = document.querySelector('.weather-condition');
-let weatherAtAGlance = document.querySelector('.weather-at-a-glance');
-let svg = document.createElement('img');
+const body = document.querySelector('body');
+const titleAction = document.querySelector('.title-action');
+const waitingSection = document.querySelector('#waiting');
+const weatherSection = document.querySelector('#weather');
+const cityTitle = document.querySelector('.city-name');
+const weatherConditionTitle = document.querySelector('.weather-condition');
+const weatherAtAGlance = document.querySelector('.weather-at-a-glance');
+const svg = document.createElement('img');
 svg.className = 'svg';
 
-let imageNavbarContainer = document.querySelector('#image-navbar-container');
-let photoDiv = document.querySelector('.body-image');
-let credits = document.querySelector('.credits');
+const imageNavbarContainer = document.querySelector('#image-navbar-container');
+const photoDiv = document.querySelector('.body-image');
+const credits = document.querySelector('.credits');
 
 function capitalize(city) {
     let words = city.split(" ");
@@ -56,7 +56,7 @@ function handlePositionError() {
 function handleReverseGeocoding(response) {
     let responseCity = response.data.features[0].properties.city;
 
-    const city = capitalize(responseCity);
+    let city = capitalize(responseCity);
     const cityInputElement = document.querySelector('#city-input');
     cityInputElement.value = city;
 
@@ -75,7 +75,7 @@ function handleSearchFormSubmit(event) {
     }
 
     checkPhoto()
-    let city = cityInputElement.value;
+    city = cityInputElement.value;
     cityInputElement.value = city = capitalize(city);
     cityTitle.innerHTML = city;
     const url = 'https://api.weatherapi.com/v1/forecast.json?key=2d94c8429371436ebe960637211005&q=' + city + '&days=3&aqi=no&alerts=yes'
@@ -174,17 +174,17 @@ function handlePhotoResponse(response) {
 }
 
 function setInfo(divId, value, name, svgscr) {
-    let div = document.getElementById(divId); // if doesn't work put query selector
+    const div = document.getElementById(divId); // if doesn't work put query selector
     
-    let condition = document.createElement('h3')
+    const condition = document.createElement('h3')
     condition.className = 'Qualcosa lol';
     condition.innerHTML = name;
 
-    let animation = document.createElement('img'); // da sostiutire con video!
+    const animation = document.createElement('img'); // da sostiutire con video!
     animation.src = svgscr;
     animation.className = 'Qualcosa';
 
-    let valueCondition = document.createElement('h3');
+    const valueCondition = document.createElement('h3');
     valueCondition.className = 'Em';
     valueCondition.innerHTML = value;
 
