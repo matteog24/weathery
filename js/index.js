@@ -111,33 +111,36 @@ function handleWeatherSuccess(response) {
 
     const currentTemperature = result.current.temp_c;
     const currentCondition = result.current.condition.text;
-    weatherConditionTitle.innerHTML = currentCondition + ' - ' + currentTemperature + 'ºC';
+    weatherConditionTitle.innerHTML = currentCondition + ' ~ ' + currentTemperature + 'ºC';
     let categoryId;
 
     if (currentCondition == 'Sunny' || currentCondition == 'Clear') { // Because https://www.weatherapi.com/docs/weather_conditions.json
         categoryId = 3302943;
         svg.src = './assets/svg/sun.svg';
-        svg.style.display = 'block';
     }
     else if (currentCondition == 'Partly cloudy' || currentCondition == 'Cloudy' || currentCondition == 'Overcast') {
         categoryId = 534083;
         svg.src = './assets/svg/cloud.svg';
-        svg.style.display = 'block';
     }
     else if (currentCondition == 'Mist' || currentCondition == 'Fog' || currentCondition == 'Freezing fog') {
         categoryId = 1683388;
+        svg.src = './assets/svg/foggy.svg';
     }
     else if (currentCondition == 'Freezing drizzle' || currentCondition == 'Heavy freezing drizzle') {
         categoryId = 8566192;
+        svg.src = './assets/svg/drizzle.svg';
     }
     else if (currentCondition == 'Patchy freezing drizzle possible' || currentCondition == 'Patchy light drizzle' || currentCondition == 'Light drizzle' || currentCondition == 'Patchy rain possible' || currentCondition == 'Patchy light rain' || currentCondition == 'Light rain' || currentCondition == 'Moderate rain at times' || currentCondition == 'Moderate rain' || currentCondition == 'Heavy rain at times' || currentCondition == 'Heavy rain' || currentCondition == 'Light freezing rain' || currentCondition == 'Moderate or heavy freezing rain' || currentCondition == 'Light rain shower' || currentCondition == 'Moderate or heavy rain shower' || currentCondition == 'Torrential rain shower' || currentCondition == 'Light sleet showers' || currentCondition == 'Moderate or heavy sleet showers') {
         categoryId = 97141906;
+        svg.src = './assets/svg/rainy.svg';
     }
     else if ( currentCondition == 'Patchy sleet possible' || currentCondition == 'Light sleet' || currentCondition == 'Moderate or heavy sleet' || currentCondition == 'Patchy snow possible' || currentCondition == 'Patchy light snow' || currentCondition == 'Light snow' || currentCondition == 'Patchy moderate snow' || currentCondition == 'Moderate snow' || currentCondition == 'Patchy heavy snow' || currentCondition == 'Heavy snow' || currentCondition == 'Blowing snow' || currentCondition == 'Blizzard' || currentCondition == 'Ice pellets' || currentCondition == 'Light snow showers' || currentCondition == 'Moderate or heavy snow showers' || currentCondition == 'Light showers of ice pellets' || currentCondition == 'Moderate or heavy showers of ice pellets') {
         categoryId = 574181;
+        svg.src = './assets/svg/snowy.svg';
     }
     else if (currentCondition == 'Patchy light rain with thunder' || currentCondition == 'Moderate or heavy rain with thunder' || currentCondition == 'Patchy light snow with thunder' || currentCondition == 'Moderate or heavy snow with thunder' || currentCondition == 'Thundery outbreaks possible') {
         categoryId = 3578001;
+        svg.src = './assets/svg/thunder.svg';
     }
     setInfo(document.querySelector('#windkmh'), (result.current.wind_kph + 'km/h'), 'Wind', '1');
     setInfo(document.querySelector('#humidity'), (result.current.humidity + '%'), 'Humidity', '1');
@@ -227,4 +230,5 @@ function debounce(func, timeout){
     maybe add string concatenation when saying + 'something'
     add alt to img
     finish the readme
+    putting only a space doesn't work
 */
