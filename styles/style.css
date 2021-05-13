@@ -104,6 +104,10 @@ p {
     transform: scale(1.2);
 }
 
+.svgSecondInfo {
+    height: 3.5rem;
+}
+
 .btn-outline-info {
     border: none;
     transition: 0.2s ease-in-out;

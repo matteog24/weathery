@@ -142,12 +142,12 @@ function handleWeatherSuccess(response) {
         categoryId = 3578001;
         svg.src = './assets/svg/thunder.svg';
     }
-    setInfo(document.querySelector('#windkmh'), (result.current.wind_kph + 'km/h'), 'Wind', '1');
-    setInfo(document.querySelector('#humidity'), (result.current.humidity + '%'), 'Humidity', '1');
-    setInfo(document.querySelector('#chance-of-rain-snow'), (result.forecast.forecastday[0].day.daily_chance_of_rain + '%'), 'Rain?', '1');
-    setInfo(document.querySelector('#sunrise'), (result.forecast.forecastday[0].astro.sunrise), 'Sunrise', '1');
-    setInfo(document.querySelector('#sunset'), (result.forecast.forecastday[0].astro.sunset), 'Sunset', '1');
-    setInfo(document.querySelector('#uv-index'), (result.current.uv), 'UV Index', '1');
+    setInfo(document.querySelector('#windkmh'), (result.current.wind_kph + 'km/h'), 'Wind', './assets/svg/second-section/wind.svg');
+    setInfo(document.querySelector('#humidity'), (result.current.humidity + '%'), 'Humidity', './assets/svg/second-section/humidity.svg');
+    setInfo(document.querySelector('#chance-of-rain'), (result.forecast.forecastday[0].day.daily_chance_of_rain + '%'), 'Rain?', './assets/svg/second-section/umbrella.svg');
+    setInfo(document.querySelector('#sunrise'), (result.forecast.forecastday[0].astro.sunrise), 'Sunrise', './assets/svg/second-section/sunrise.svg');
+    setInfo(document.querySelector('#sunset'), (result.forecast.forecastday[0].astro.sunset), 'Sunset', './assets/svg/second-section/sunset.svg');
+    setInfo(document.querySelector('#uv-index'), (result.current.uv), 'UV Index', './assets/svg/second-section/uv.svg');
 
     weatherAtAGlance.appendChild(svg);
     const urlPhoto = 'https://api.unsplash.com/photos/random?collections=' + categoryId + '&client_id=Yxvg_YObZct-TssWBqiY8uDVdacG-sjPWftIeOEn_II'
@@ -184,14 +184,14 @@ function setInfo(divId, value, name, svgscr) {
     const condition = document.createElement('h5')
     condition.innerHTML = name;
 
-    // const animation = document.createElement('img'); // da sostiutire con video!
-    // animation.src = svgscr;
-    // animation.className = 'Qualcosa';
+    const svgWeather = document.createElement('img');
+    svgWeather.src = svgscr;
+    svgWeather.className = 'svgSecondInfo';
 
     const valueCondition = document.createElement('h3');
     valueCondition.innerHTML = value;
 
-    divId.append(condition, valueCondition)
+    divId.append(condition, svgWeather, valueCondition)
 }
 
 function changeTitle(text, classTitle) {
