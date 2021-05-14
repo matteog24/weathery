@@ -204,6 +204,11 @@ p {
     backdrop-filter: blur(0.5px);
 }
 
+.form-control {
+    user-select: initial;
+    -webkit-user-select: initial;
+}
+
 .weather-at-a-glance {
     justify-content: space-between;
     display: flex;

@@ -14,6 +14,8 @@ const weatherAtAGlance = document.querySelector('.weather-at-a-glance');
 const svg = document.createElement('img');
 svg.className = 'svg';
 
+const origTitle = document.title;
+
 const imageNavbarContainer = document.querySelector('#image-navbar-container');
 const photoDiv = document.querySelector('.body-image');
 const credits = document.querySelector('.credits');
@@ -95,11 +97,12 @@ function handleWeatherError(error) {
     cityInputElement.value = '';
     body.className = 'error-location';
     titleAction.innerHTML = 'City not found.';
+    document = origTitle;
 };
 
 function handleWeatherSuccess(response) {
     body.className = '';
-    titleAction.innerHTML = ''
+    titleAction.innerHTML = '';
     const result = response.data;
 
     if (weatherAtAGlance.contains(svg)) {
@@ -108,6 +111,7 @@ function handleWeatherSuccess(response) {
 
     cityInputElement.value = '';
     cityTitle.innerHTML = result.location.name;
+    document.title = result.location.name + ' on Weathery'
 
     const currentTemperature = result.current.temp_c;
     const currentCondition = result.current.condition.text;
@@ -207,7 +211,7 @@ function changeTitle(text, classTitle) {
     }
     
     body.className = classTitle; // Removes all classes to add the preferred one.
-
+    document.title = text;
 }
 
 function checkPhoto() {
