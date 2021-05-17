@@ -23,9 +23,8 @@ const credits = document.querySelector('.credits');
 function capitalize(city) {
     let words = city.split(" ");
 
-    words[0] = words[0][0].toUpperCase() + (words[0].substring(1)).toLowerCase();
-
-    if (words[1] !== null) {
+    if (words[0] !== undefined) {
+        words[0] = words[0][0].toUpperCase() + (words[0].substring(1)).toLowerCase();
         for (let i = 1; i < words.length; i++) {
             if (words[i][0] !== undefined) {
                 words[i] = words[i][0].toUpperCase() + (words[i].substring(1)).toLowerCase();
@@ -83,8 +82,6 @@ function handleSearchFormSubmit(event) {
     cityInputElement.value = city = capitalize(city);
     cityTitle.innerHTML = city;
     const url = 'https://api.weatherapi.com/v1/forecast.json?key=2d94c8429371436ebe960637211005&q=' + city + '&days=3&aqi=no&alerts=yes'
-    // const url = 'http://api.weatherstack.com/forecast?access_key=1bd3c3657a546d62614e9691092a9a82&query=' + city;
-    // const url = 'https://goweather.herokuapp.com/weather/' + city;
     changeTitle('Getting Results', 'gradient-waiting-result');
 
     const promise = axios.get(url);
@@ -159,7 +156,7 @@ function handleWeatherSuccess(response) {
     promisePhoto.then(handlePhotoResponse);
     body.className = '';
     waitingSection.style.display = 'none';
-    weatherSection.style.display = 'block';
+    weatherSection.style.display = 'flex';
 
 }
 
@@ -200,7 +197,7 @@ function setInfo(divId, value, name, svgscr) {
 
 function changeTitle(text, classTitle) {
     weatherSection.style.display = 'none'; // In case the Weather Section was displayed
-    waitingSection.style.display = 'block'; // Block = Default. Makes sure it appears.
+    waitingSection.style.display = 'flex'; 
 
     titleAction.innerHTML = text;
     for (let a = 0; a < 3; a++) {
@@ -221,7 +218,7 @@ function checkPhoto() {
     }
 }
 
-function debounce(func, timeout){
+function debounce(func, timeout) {
     let timer;
     return (...args) => {
         clearTimeout(timer);
@@ -234,5 +231,5 @@ function debounce(func, timeout){
     maybe add string concatenation when saying + 'something'
     add alt to img
     finish the readme
-    putting only a space doesn't work
+    putting only a space = bug only after searching city
 */

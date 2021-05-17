@@ -32,4 +32,4 @@ Note: this is a school project, we have to answer some questions for different c
 
     What are we forgetting? CSS, of course! Who doesn't like spending hours just positioning the elements? This is where Bootstrap helps a lot, but still, we had to work a lot, but we like the UI/UX a lot!  
 
-    There are several improvements to do, like...
+    Of course, just like any other project, there are always aspects that can be improved. 

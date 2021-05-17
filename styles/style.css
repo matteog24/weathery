@@ -16,6 +16,11 @@
     -webkit-user-select: none;
 }
 
+body {
+    width: 100%;
+    height: 100%;
+}
+
 .body-image {
     width: 100%;
     height: calc(100% - 2.5rem);
@@ -51,6 +56,7 @@ p {
 }
 
 .info {
+    min-width: 8rem;
     width: 8rem;
     height: 10rem;
     border-radius: 20px;
@@ -80,9 +86,8 @@ p {
 }
 
 .info-div {
-    bottom: 30;
-    position: absolute;
-    justify-content: left;
+    padding: 25px;
+    overflow-x: scroll;
 }
 
 .city-name {
@@ -124,6 +129,7 @@ p {
 }
 
 .image-navbar-container {
+    display: block;
     position: relative;
 }
 
@@ -211,7 +217,13 @@ p {
 
 .weather-at-a-glance {
     justify-content: space-between;
+    flex: 2;
     display: flex;
+}
+
+#weather-rectangle {
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes animation{
@@ -237,7 +249,7 @@ p {
     }
 }
 
-@media only screen and (max-width: 500px)  {
+@media only screen and (max-width: 600px)  {
 
     .city-name {
         font-size: 2.5rem;
@@ -247,8 +259,17 @@ p {
         font-size: 1.5rem;
     }
 
+    .weather-at-a-glance {
+        display: block;
+    }
+
     .web-title {
         display: none;
+    }
+
+    .svg {
+        height: 15rem;
+        width: 15rem;
     }
 
     .container-rectangle {
@@ -271,38 +292,5 @@ p {
 
     .navbar > .container-fluid {
         flex-wrap: initial;
-    }
-}
-
-@media only screen and (max-height: 500px) {
-
-    .city-name {
-        font-size: 1rem;
-    }
-
-    .weather-condition {
-        font-size: 1.5rem;
-    }
-
-    .navbar {
-        opacity: 0;
-    }
-
-    .navbar:hover {
-        opacity: 1;
-    }
-
-    .container-rectangle {
-        margin-top: 0px;
-        height: 100%;
-        width: 95%;
-    }
-
-    .navbar:hover + .image-navbar-container + #weather > .container-rectangle { /* not checked yet */
-        margin-top: 65px;
-    }
-
-    .body-image {
-        margin-top: 0px;
     }
 }
