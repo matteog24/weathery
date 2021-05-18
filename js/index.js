@@ -115,7 +115,7 @@ function handleWeatherSuccess(response) {
     weatherConditionTitle.innerHTML = currentCondition + ' ~ ' + currentTemperature + 'ºC';
     let categoryId;
 
-    if (currentCondition == 'Sunny' || currentCondition == 'Clear') { // Because https://www.weatherapi.com/docs/weather_conditions.json
+    if (currentCondition == 'Sunny' || currentCondition == 'Clear') {
         categoryId = 3302943;
         svg.src = './assets/svg/sun.svg';
     }
@@ -143,6 +143,7 @@ function handleWeatherSuccess(response) {
         categoryId = 3578001;
         svg.src = './assets/svg/thunder.svg';
     }
+
     setInfo(document.querySelector('#windkmh'), (result.current.wind_kph + 'km/h'), 'Wind', './assets/svg/second-section/wind.svg');
     setInfo(document.querySelector('#humidity'), (result.current.humidity + '%'), 'Humidity', './assets/svg/second-section/humidity.svg');
     setInfo(document.querySelector('#chance-of-rain'), (result.forecast.forecastday[0].day.daily_chance_of_rain + '%'), 'Rain?', './assets/svg/second-section/umbrella.svg');
@@ -156,7 +157,7 @@ function handleWeatherSuccess(response) {
     promisePhoto.then(handlePhotoResponse);
     body.className = '';
     waitingSection.style.display = 'none';
-    weatherSection.style.display = 'flex';
+    weatherSection.style.display = 'block';
 
 }
 
@@ -197,7 +198,7 @@ function setInfo(divId, value, name, svgscr) {
 
 function changeTitle(text, classTitle) {
     weatherSection.style.display = 'none'; // In case the Weather Section was displayed
-    waitingSection.style.display = 'flex'; 
+    waitingSection.style.display = 'block'; 
 
     titleAction.innerHTML = text;
     for (let a = 0; a < 3; a++) {
