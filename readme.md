@@ -21,6 +21,12 @@ Note: this is a school project, we have to answer some questions for different c
     We considered implementing three distinct APIs: geolocation, weather, and photo picker. Geoapify provided the geolocation, or more specifically, reverse geolocation, which extracts the coordinates to determine the current city. The weather API obtains the daily forecast. Unsplash's photo picker selects a random image from a collection of photos (which may be rain, sun, etc.). Let's not forget the most fundamental component: Axios! It receives the URL with a promise and returns a JSON containing all data; to display the information on the page, we will change the `innerHTML` of each element.  
     We wanted the website to look as cool as possible, which is why the background is a moving gradient (when receiving input) and the photo is responsive. We also changed the font from Bootstrap's default one (Helvetica Neue, Apple-style) to Product Sans (Google-style) using `@font-face`.
 
+- Criterion B
+
+    ![Home](./criterion-b/home.png)
+    Here you can see how the website should have looked. The home is very simple: there's an animation (which changes based on the action), a button for searching via location, and other two elements to search manually: a field text input and a button.
+    ![City Weather](./criterion-b/city.png)
+    Once the city has been found, there will be one big heading saying the name of the city. A subhead where is written the current weather condition with the temperature in Celsius; there's also an SVG animation. Finally, there are other divs for extra information (sunset, sunrise, etc.).
 
 - Criteria D
 
@@ -32,4 +38,4 @@ Note: this is a school project, we have to answer some questions for different c
 
     What are we forgetting? CSS, of course! Who doesn't like spending hours just positioning the elements? This is where Bootstrap helps a lot, but still, we had to work a lot, but we like the UI/UX a lot!  
 
-    Of course, just like any other project, there are always aspects that can be improved. 
+    Of course, just like any other project, there are always aspects that can be improved. The code could always be more tidy and efficient. We could add more features, such as more SVG animations depending on the time of day, or the temperature of the location. There could also be a part of the website which displays the current time at the location. Adding some text which clearly shows where the city is located might also better the user experience. 
