@@ -90,6 +90,14 @@ p {
     overflow-x: scroll;
 }
 
+.info-div > .info:first-child {
+    margin-left: none;
+}
+
+.info-div > .info:last-child {
+    margin-right: none;
+}
+
 .city-name {
     font-size: calc(3.5rem + 1.5vw);
     position: relative;
@@ -259,10 +267,6 @@ p {
         font-size: 1.5rem;
     }
 
-    .weather-at-a-glance {
-        display: block;
-    }
-
     .web-title {
         display: none;
     }
@@ -295,7 +299,21 @@ p {
     }
 }
 
-@media only screen and (max-height: 570px) {
+@media only screen and (max-height: 500px) {
+
+    .navbar {
+        height: 3.5rem;
+        padding-top: none;
+        padding-bottom: none;
+    }
+
+    .city-name {
+        font-size: 1.5rem;
+    }
+
+    .weather-condition {
+        font-size: 1rem;
+    }
 
     .info {
         height: 100%;
@@ -314,6 +332,7 @@ p {
     }
 
     .svg {
-        display: none;
+        height: 5rem;
+        width: 5rem;
     }
 }
