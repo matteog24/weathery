@@ -23,9 +23,9 @@ Note: this is a school project, we have to answer some questions for different c
 
 - Criterion B
 
-    ![Home](./criterion-b/home.png)
+    ![Home](./criterion-b/home.jpg)
     Here you can see how the website should have looked. The home is very simple: there's an animation (which changes based on the action), a button for searching via location, and other two elements to search manually: a field text input and a button.
-    ![City Weather](./criterion-b/city.png)
+    ![City Weather](./criterion-b/city.jpg)
     Once the city has been found, there will be one big heading saying the name of the city. A subhead where is written the current weather condition with the temperature in Celsius; there's also an SVG animation. Finally, there are other divs for extra information (sunset, sunrise, etc.).
 
 - Criteria D
