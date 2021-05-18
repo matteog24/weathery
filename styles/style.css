@@ -94,10 +94,6 @@ p {
     margin-left: none;
 }
 
-.info-div > .info:last-child {
-    margin-right: none;
-}
-
 .city-name {
     font-size: calc(3.5rem + 1.5vw);
     position: relative;
