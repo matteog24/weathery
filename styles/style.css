@@ -105,8 +105,8 @@ p {
 }
 
 .svg {
-    width: 25rem;
-    height: 25rem;
+    width: calc(15rem + 1vw);
+    height: calc(15rem + 1vw);
     transition: 0.3s transform ease-in-out;
 }
 
