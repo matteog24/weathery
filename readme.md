@@ -9,8 +9,8 @@ Weathery is an open-source website that provides a weather forecast for cities, 
 - [Weather API](https://www.weatherapi.com) - Forecasted and Historical Weather
 - [Unsplash](https://api.unsplash.com) - Random Photo from Collection
 
-*Special thanks to [amCharts](https://www.amcharts.com/free-animated-svg-weather-icons/) for providing the SVG animated icons.
-
+---
+Special thanks to [amCharts](https://www.amcharts.com/free-animated-svg-weather-icons/) for providing the SVG animated icons.
 ---
 
 Note: this is a school project, we have to answer some questions for different criterias. 
@@ -32,10 +32,10 @@ Note: this is a school project, we have to answer some questions for different c
 
     **Q: What was the most challenging parts of your project? What are possibile future improvements are presented?**  
     The most challenging part was working with promises and displaying the info on the HTML page.  
-    About promises: the concept that confused us was about the '.then' statement. Why? We attempted multiple times to obtain information (such as the temperature) from the promise outside the function called in the '.then' statement, which returned a pending promise and a fatal bug.  
-    Then there was the issue of calling a function if there was an error with the promise. After running out of ideas, we asked our amazing teacher who introduced us to the '.catch' statement: a lifesaver, to say the least.  
+    About promises: the concept that confused us was about the `.then` statement. Why? We attempted multiple times to obtain information (such as the temperature) from the promise outside the function called in the '.then' statement, which returned a pending promise and a fatal bug.  
+    Then there was the issue of calling a function if there was an error with the promise. After running out of ideas, we asked our amazing teacher who introduced us to the `.catch` statement: a lifesaver, to say the least.  
     Displaying the info on the HTML page wasn't difficult, but time-consuming: we had to declare a constant for almost every element, which led to 20 lines only of constants and variables.  
 
-    What are we forgetting? CSS, of course! Who doesn't like spending hours just positioning the elements? This is where Bootstrap helps a lot, but still, we had to work a lot, but we like the UI/UX a lot!  
+    What are we forgetting? CSS, of course! We spent hours just trying to position the elements. This is where Bootstrap helps a lot, but still, we had to work a lot, but we like the UI/UX a lot!  
 
-    Of course, just like any other project, there are always aspects that can be improved. The code could always be more tidy and efficient. We could add more features, such as more SVG animations depending on the time of day, or the temperature of the location. There could also be a part of the website which displays the current time at the location. Adding some text which clearly shows where the city is located might also better the user experience. 
+    Of course, just like any other project, there are always aspects that can be improved. The code could always be more tidy and efficient. We could add more features, such as more SVG animations depending on the time of day (e.g. instead of the sun, there's the moon), or the temperature of the location. There could also be a part of the website which displays the current time in the location. Adding some text which clearly shows where the city is located, like the country, might also better the user experience. 
