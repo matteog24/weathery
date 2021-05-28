@@ -90,10 +90,6 @@ p {
     overflow-x: scroll;
 }
 
-.info-div > .info:first-child {
-    margin-left: none;
-}
-
 .city-name {
     font-size: calc(3.5rem + 1.5vw);
     position: relative;
