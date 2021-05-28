@@ -9,8 +9,9 @@ Weathery is an open-source website that provides a weather forecast for cities, 
 - [Weather API](https://www.weatherapi.com) - Forecasted and Historical Weather
 - [Unsplash](https://api.unsplash.com) - Random Photo from Collection
 
+_Special thanks to [amCharts](https://www.amcharts.com/free-animated-svg-weather-icons/) for providing the SVG animated icons._
+
 ---
-Special thanks to [amCharts](https://www.amcharts.com/free-animated-svg-weather-icons/) for providing the SVG animated icons.
 
 Note: this is a school project, we have to answer some questions for different criterias. 
 
